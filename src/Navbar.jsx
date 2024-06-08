@@ -19,9 +19,9 @@ function Navbar({ category }) {
 
       <nav className="hidden md:flex items-center gap-6">
         <Link to="/" className="hover:border-b border-transparent hover:border-red-300">Shop</Link>
-        <Link to={`/women's%20clothing/${encodeURIComponent(category)}`} className="hover:border-b border-transparent hover:border-red-300">Women</Link>
-        <Link to="/men's clothing/:category" className="hover:border-b border-transparent hover:border-red-300">Men</Link>
-        <Link to="/jewellery" className="hover:border-b border-transparent hover:border-red-300">Jewellery</Link>
+        <Link to={`/women's clothing`} className="hover:border-b border-transparent hover:border-red-300">Women</Link>
+        <Link to={`/men's clothing/`} className="hover:border-b border-transparent hover:border-red-300">Men</Link>
+        <Link to="/jewelery" className="hover:border-b border-transparent hover:border-red-300">Jewellery</Link>
       </nav>
 
       <div className="hidden md:flex items-center gap-6">

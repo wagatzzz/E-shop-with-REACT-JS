@@ -5,7 +5,7 @@ import { fetchData } from './api';
 import ProductItem from './ProductItem';
 
 const WomenPage = () => {
-  const category = "women's clothing";
+  const category = "jewelery";
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const WomenPage = () => {
   return (
     <Layout>
       <div>
-        <h1>WOMEN</h1>
+        <h1>JEWELLERY</h1>
         {data.map(item => {
           return (
             <ProductItem
