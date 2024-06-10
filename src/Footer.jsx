@@ -17,7 +17,7 @@ function Footer() {
   };
 
   return (
-    <footer style={{ position: 'fixed', bottom: 0, width: '100%' }} className="bg-red-100 shadow-md rounded-md">
+    <footer className="bg-red-100 shadow-md rounded-md">
     <div className="justify-center items-center mt-4 flex flex-col">
       <p className="text-sm md:text-base lg:text-lg mt-6 text-gray-600">
           Subscribe to our newsletter to stay updated!

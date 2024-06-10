@@ -18,7 +18,7 @@ const WomenPage = () => {
   }, [category]);
 
   return (
-    <Layout>
+    <Layout >
       <div>
         <h1>WOMEN</h1>
         {data.map(item => {

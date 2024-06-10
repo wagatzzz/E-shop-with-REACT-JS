@@ -18,7 +18,7 @@ const WomenPage = () => {
   }, [category]);
 
   return (
-    <Layout>
+    <Layout showBanner={true}>
       <div>
         <h1>MEN</h1>
         {data.map(item => {
