@@ -1,7 +1,7 @@
 # React + Vite
 This project recreates the E-shop project done with html, talwind css and javascript with React Js and Tailwind CSS.
 
-- [Live Link:](jos-e-shop.netlify.app)
+- - [Live Link](https://jos-e-shop.netlify.app)
 
 
 
