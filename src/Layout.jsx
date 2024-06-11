@@ -17,12 +17,14 @@ const Layout = ({ children, showBanner }) => {
   };
 
   return (
-    <div>
+    <div className="bg-red-50 min-h-screen"> {/* Light red background color */}
       <Navbar />
       {showBanner && (
         <>
-          <Banner />
-          <div className="p-4 bg-gray-100">
+          <div className="m-4"> {/* Adding margin around the Banner component */}
+            <Banner />
+          </div>
+          <div className="p-4">
             <form onSubmit={handleSearchSubmit} className="flex justify-center mb-4">
               <input
                 type="text"
@@ -33,19 +35,17 @@ const Layout = ({ children, showBanner }) => {
               />
               <button
                 type="submit"
-                className="bg-red-500 text-white px-4 py-2 rounded-r-md"
+                className="bg-orange-500 text-white px-4 py-2 rounded-r-md hover:bg-white hover:text-black hover:shadow-md"
               >
                 Search
               </button>
             </form>
           </div>
-        </> 
+        </>
       )}
-      
-      <div className="p-4 bg-gray-100">{children}</div>
+      <div className="p-4">{children}</div>
       <Footer />
     </div>
-    
   );
 };
 

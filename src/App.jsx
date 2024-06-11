@@ -5,6 +5,10 @@ import MenPage from './MenPage';
 import HomePage from './HomePage';
 import Jewellery from './Jewellery';
 import All from './All';
+import Cart from './Cart';
+import Login from './Login';
+import SignUp from './SignUp';
+
 
 const App = () => {
   return (
@@ -16,6 +20,9 @@ const App = () => {
         <Route path="/men's clothing" element={<MenPage />} /> 
         <Route path="/jewelery" element={<Jewellery />} />
         <Route path="/all" element={<All />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
         {/* Add more routes for other pages */}
       </Routes>
     </Router>

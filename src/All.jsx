@@ -22,19 +22,37 @@ const All = () => {
     fetchAllData();
   }, []);
 
+  const addToCart = (product) => {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const updatedCart = [...cartItems, product];
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    // Create toast notification element
+    const toast = document.createElement('div');
+    toast.classList.add('toast');
+    toast.textContent = 'Product added to cart!';
+
+    // Append toast to the document body
+    document.body.appendChild(toast);
+
+    // Remove toast after a certain duration
+    setTimeout(() => {
+        toast.remove();
+    }, 1000); // Adjust duration as needed (e.g., 3000 milliseconds = 3 seconds)
+};
+
   return (
     <Layout showBanner={true}>
       <div>
-        <h1>ALL</h1>
-        {allProducts.map(product => (
-          <ProductItem
-            key={product.id}
-            image={product.image}
-            title={product.title}
-            description={product.description}
-            price={product.price}
-          />
-        ))}
+        <div className="product-grid">
+          {allProducts.map(product => (
+            <ProductItem
+              key={product.id}
+              product={product}
+              addToCart={addToCart}
+            />
+          ))}
+        </div>
       </div>
     </Layout>
   );

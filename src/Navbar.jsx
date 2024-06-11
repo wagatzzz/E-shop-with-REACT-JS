@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping, faCartShopping, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping, faCartShopping, faBars, faTimes, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar({ category }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    // Retrieve cart items from local storage
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    // Update cartCount state with the number of items in the cart
+    setCartCount(cartItems.length);
+  }, []);
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const removeFromCart = (itemId) => {
+    // Retrieve cart items from local storage
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    // Filter out the item with the specified itemId
+    cartItems = cartItems.filter(item => item.id !== itemId);
+    // Update local storage with the updated cart items
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    // Update cartCount state with the new count of items in the cart
+    setCartCount(cartItems.length);
   };
 
   return (
@@ -25,11 +44,17 @@ function Navbar({ category }) {
       </nav>
 
       <div className="hidden md:flex items-center gap-6">
-        <button id="loginButton" className="bg-orange-500 rounded-full w-32 h-10 text-white hover:bg-white hover:text-black hover:shadow-md">Login</button>
-        <div className="relative">
-          <FontAwesomeIcon id="cartIcon" icon={faCartShopping} className="text-3xl" />
-          <span id="cartCount" className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">0</span>
-        </div>
+      <Link to="/login">
+        <button id="loginButton" className="bg-orange-500 rounded-full w-32 h-10 text-white hover:bg-white hover:text-black hover:shadow-md">
+          Login
+        </button>
+      </Link>
+        <Link to="/cart">
+          <div className="relative">
+            <FontAwesomeIcon id="cartIcon" icon={faCartShopping} className="text-3xl" />
+            <span id="cartCount" className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">{cartCount}</span>
+          </div>
+        </Link>
       </div>
 
       <div className="md:hidden">
@@ -49,7 +74,10 @@ function Navbar({ category }) {
             <Link to="/men's clothing/:category" className="hover:border-b border-transparent hover:border-red-300">Men</Link>
             <Link to="/jewellery" className="hover:border-b border-transparent hover:border-red-300">Jewellery</Link>
             <button id="loginButtonMobile" className="border border-black w-24 rounded-full hover:bg-red-50 mt-4">Login</button>
-            <FontAwesomeIcon icon={faCartShopping} className="text-3xl mt-4" aria-label="Cart" />
+            <Link to="/cart">
+              <FontAwesomeIcon icon={faCartShopping} className="text-3xl mt-4" aria-label="Cart" />
+              <span id="cartCountMobile" className="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">{cartCount}</span>
+            </Link>
           </div>
         </div>
       </div>

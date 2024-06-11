@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Layout from './Layout';
-import { useParams } from 'react-router-dom';
 import { fetchData } from './api';
 import ProductItem from './ProductItem';
 
@@ -17,21 +16,39 @@ const WomenPage = () => {
       .catch(error => console.error('Error fetching data:', error));
   }, [category]);
 
+  const addToCart = (product) => {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const updatedCart = [...cartItems, product];
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    // Create toast notification element
+    const toast = document.createElement('div');
+    toast.classList.add('toast');
+    toast.textContent = 'Product added to cart!';
+
+    // Append toast to the document body
+    document.body.appendChild(toast);
+
+    // Remove toast after a certain duration
+    setTimeout(() => {
+        toast.remove();
+    }, 1000); // Adjust duration as needed (e.g., 3000 milliseconds = 3 seconds)
+};
+
+
   return (
-    <Layout >
+    <Layout showBanner={true}>
       <div>
-        <h1>WOMEN</h1>
-        {data.map(item => {
-          return (
+        
+        <div className="product-grid">
+          {data.map(item => (
             <ProductItem
               key={item.id}
-              image={item.image}
-              title={item.title}
-              description={item.description}
-              price={item.price}
+              product={item}
+              addToCart={addToCart}
             />
-          );
-        })}
+          ))}
+        </div>
       </div>
     </Layout>
   );
