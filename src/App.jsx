@@ -15,7 +15,7 @@ const App = () => {
     <Router>
       <Routes>
         {/* Define your routes using the Route component */}
-        <Route path="/" element={<HomePage />} /> {/* Route for the root path */}
+        <Route path="/" element={<HomePage />} />
         <Route path="/women's clothing" element={<WomenPage />} />
         <Route path="/men's clothing" element={<MenPage />} /> 
         <Route path="/jewelery" element={<Jewellery />} />
@@ -23,7 +23,6 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        {/* Add more routes for other pages */}
       </Routes>
     </Router>
   );

@@ -44,11 +44,11 @@ function Navbar({ category }) {
       </nav>
 
       <div className="hidden md:flex items-center gap-6">
-      <Link to="/login">
-        <button id="loginButton" className="bg-orange-500 rounded-full w-32 h-10 text-white hover:bg-white hover:text-black hover:shadow-md">
-          Login
-        </button>
-      </Link>
+        <Link to="/login">
+          <button id="loginButton" className="bg-orange-500 rounded-full w-32 h-10 text-white hover:bg-white hover:text-black hover:shadow-md">
+            Login
+          </button>
+        </Link>
         <Link to="/cart">
           <div className="relative">
             <FontAwesomeIcon id="cartIcon" icon={faCartShopping} className="text-3xl" />
@@ -70,10 +70,14 @@ function Navbar({ category }) {
           </button>
           <div className="flex flex-col items-center gap-4">
             <Link to="/" className="hover:border-b border-transparent hover:border-red-300">Shop</Link>
-            <Link to={`/women's clothing/${encodeURIComponent(category)}`} className="hover:border-b border-transparent hover:border-red-300">Women</Link>
-            <Link to="/men's clothing/:category" className="hover:border-b border-transparent hover:border-red-300">Men</Link>
-            <Link to="/jewellery" className="hover:border-b border-transparent hover:border-red-300">Jewellery</Link>
-            <button id="loginButtonMobile" className="border border-black w-24 rounded-full hover:bg-red-50 mt-4">Login</button>
+            <Link to={`/women's clothing`} className="hover:border-b border-transparent hover:border-red-300">Women</Link>
+            <Link to={`/men's clothing/`} className="hover:border-b border-transparent hover:border-red-300">Men</Link>
+            <Link to="/jewelery" className="hover:border-b border-transparent hover:border-red-300">Jewellery</Link>
+            <Link to="/login">
+              <button id="loginButton" className="bg-orange-500 rounded-full w-32 h-10 text-white hover:bg-white hover:text-black hover:shadow-md">
+                Login
+              </button>
+            </Link>
             <Link to="/cart">
               <FontAwesomeIcon icon={faCartShopping} className="text-3xl mt-4" aria-label="Cart" />
               <span id="cartCountMobile" className="bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">{cartCount}</span>

@@ -10,7 +10,7 @@ function HomePage() {
   useEffect(() => {
     fetchData("women's clothing")
       .then(response => {
-        // Select only the first four items
+        
         const firstFourItems = response.slice(0, 4);
         setWomenProducts(firstFourItems);
       })

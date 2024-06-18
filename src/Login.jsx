@@ -19,10 +19,10 @@ function Login() {
         e.preventDefault();
         const userData = JSON.parse(sessionStorage.getItem('userData'));
         if (userData && userData.email === formData.email && userData.password === formData.password) {
-            // Authentication successful, redirect to authenticated route or perform other actions
+            
             console.log('Login successful');
         } else {
-            // Authentication failed, display error message or perform other actions
+            
             console.log('Invalid credentials');
         }
     };

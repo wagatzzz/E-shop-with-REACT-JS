@@ -21,7 +21,7 @@ const Cart = () => {
         // Update local storage with the updated cart items
         localStorage.setItem('cart', JSON.stringify(updatedCartItems));
         // Reload the page to reflect the changes
-        window.location.reload();
+       // window.location.reload();
     };
 
     return (

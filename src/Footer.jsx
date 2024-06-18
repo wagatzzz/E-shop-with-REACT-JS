@@ -12,7 +12,7 @@ function Footer() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your subscription logic here
+    
     console.log('Subscribed with email:', email);
   };
 

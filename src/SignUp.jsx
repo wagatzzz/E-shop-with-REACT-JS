@@ -19,7 +19,7 @@ function SignUp() {
     const handleSubmit = (e) => {
         e.preventDefault();
         sessionStorage.setItem('userData', JSON.stringify(formData));
-        // Redirect to login page or perform any other action after signup
+        
     };
 
     return (

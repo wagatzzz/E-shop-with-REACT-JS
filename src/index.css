@@ -5,26 +5,26 @@
 .product-grid {
     display: grid;
     gap: 16px;
-    grid-template-columns: repeat(4, 1fr); /* 4 columns layout */
+    grid-template-columns: repeat(4, 1fr); 
     padding: 16px;
   }
   
   /* Responsive adjustments */
   @media (max-width: 1200px) {
     .product-grid {
-      grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens */
+      grid-template-columns: repeat(3, 1fr); 
     }
   }
   
   @media (max-width: 900px) {
     .product-grid {
-      grid-template-columns: repeat(2, 1fr); /* 2 columns for small screens */
+      grid-template-columns: repeat(2, 1fr); 
     }
   }
   
   @media (max-width: 600px) {
     .product-grid {
-      grid-template-columns: 1fr; /* 1 column for extra small screens */
+      grid-template-columns: 1fr; 
     }
   }
   
@@ -36,17 +36,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
   }
   
   .card:hover {
-    transform: scale(1.05); /* Enlarge the card */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
   }
   
   .toast {
     position: fixed;
-    top: 20px; /* Adjust as needed */
+    top: 20px; 
     left: 50%;
     transform: translateX(-50%);
     background-color: #eb7608;

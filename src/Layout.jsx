@@ -12,16 +12,16 @@ const Layout = ({ children, showBanner }) => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    // Handle the search logic here, e.g., navigate to a search results page or filter items
+    
     console.log('Search query:', searchQuery);
   };
 
   return (
-    <div className="bg-red-50 min-h-screen"> {/* Light red background color */}
+    <div className="bg-red-50 min-h-screen">
       <Navbar />
       {showBanner && (
         <>
-          <div className="m-4"> {/* Adding margin around the Banner component */}
+          <div className="m-4"> 
             <Banner />
           </div>
           <div className="p-4">
