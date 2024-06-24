@@ -10,7 +10,6 @@ function HomePage() {
   useEffect(() => {
     fetchData("women's clothing")
       .then(response => {
-        
         const firstFourItems = response.slice(0, 4);
         setWomenProducts(firstFourItems);
       })
@@ -19,9 +18,28 @@ function HomePage() {
 
   const addToCart = (product) => {
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    const updatedCart = [...cartItems, product];
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-    console.log('Product added to cart!');
+    const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+
+    if (existingItemIndex !== -1) {
+      // If the item already exists in the cart, update its quantity
+      cartItems[existingItemIndex].quantity += 1;
+    } else {
+      // If the item is new to the cart, add it with a quantity of 1
+      product.quantity = 1;
+      cartItems.push(product);
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+
+    // Create toast notification element
+    const toast = document.createElement('div');
+    toast.classList.add('toast');
+    toast.textContent = 'Product added to cart!';
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.remove();
+    }, 1000);
   };
 
   return (
@@ -51,7 +69,7 @@ function HomePage() {
           <div>
             <img
               className="w-full"
-              src="src/images/banner-image2-removebg-preview.png"
+              src="public/images/banner-image2-removebg-preview.png"
               alt="banner image"
             />
           </div>

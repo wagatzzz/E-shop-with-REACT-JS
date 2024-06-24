@@ -13,7 +13,6 @@ const All = () => {
         const allData = await Promise.all(categories.map(category => fetchData(category)));
         const combinedData = allData.flat();
         setAllProducts(combinedData);
-        console.log(combinedData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -23,23 +22,35 @@ const All = () => {
   }, []);
 
   const addToCart = (product) => {
+    // Retrieve cart items from local storage
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    const updatedCart = [...cartItems, product];
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+    // Check if the product already exists in the cart
+    const existingItem = cartItems.find(item => item.id === product.id);
+
+    if (existingItem) {
+      // If the item exists, increase its quantity
+      existingItem.quantity += 1;
+    } else {
+      // Otherwise, add the product to the cart with a quantity of 1
+      const newCartItem = { ...product, quantity: 1 };
+      cartItems.push(newCartItem);
+    }
+
+    // Update local storage with the updated cart items
+    localStorage.setItem('cart', JSON.stringify(cartItems));
 
     // Create toast notification element
     const toast = document.createElement('div');
     toast.classList.add('toast');
     toast.textContent = 'Product added to cart!';
 
-    
     document.body.appendChild(toast);
 
-    
     setTimeout(() => {
-        toast.remove();
+      toast.remove();
     }, 1000); 
-};
+  };
 
   return (
     <Layout showBanner={true}>

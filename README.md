@@ -15,7 +15,7 @@ Welcome to **CLOJEWLS**, your go-to online shop for a delightful shopping experi
 
 We hope you enjoy shopping with CLOJEWLS!
 
-- [Live Link](https://jos-e-shop.netlify.app)
+- [Live Link](https://eshopwithreact.web.app)
 
 
 
