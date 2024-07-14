@@ -69,7 +69,7 @@ function HomePage() {
           <div>
             <img
               className="w-full"
-              src="public/images/banner-image2-removebg-preview.png"
+              src="banner-image2-removebg-preview.png"
               alt="banner image"
             />
           </div>
