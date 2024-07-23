@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Layout from './Layout';
+import Layout from '../components/layout/Layout';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {

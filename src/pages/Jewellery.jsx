@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Layout from './Layout';
-import { fetchData } from './api';
-import ProductItem from './ProductItem';
+import Layout from '../components/layout/Layout';
+import { fetchData } from '../services/api';
+import ProductItem from '../components/specific/ProductItem';
 
-const MenPage = () => {
-  const category = "men's clothing";
+const Jewellery = () => {
+  const category = "jewelery";
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -59,4 +59,4 @@ const MenPage = () => {
   );
 };
 
-export default MenPage;
+export default Jewellery;

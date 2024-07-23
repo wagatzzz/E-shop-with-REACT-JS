@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import WomenPage from './WomenPage';
-import MenPage from './MenPage';
-import HomePage from './HomePage';
-import Jewellery from './Jewellery';
-import All from './All';
-import Cart from './Cart';
-import Login from './Login';
-import SignUp from './SignUp';
+import WomenPage from './pages/WomenPage';
+import MenPage from './pages/MenPage';
+import HomePage from './pages/HomePage';
+import Jewellery from './pages/Jewellery';
+import All from './pages/All';
+import Cart from './pages/Cart';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 
 const App = () => {

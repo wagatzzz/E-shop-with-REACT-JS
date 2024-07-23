@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Layout from './Layout';
-import { fetchData } from './api';
-import ProductItem from './ProductItem';
+import Layout from '../components/layout/Layout';
+import { fetchData } from '../services/api';
+import ProductItem from '../components/specific/ProductItem';
 
 const WomenPage = () => {
   const category = "women's clothing";
