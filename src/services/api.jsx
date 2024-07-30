@@ -1,8 +1,15 @@
-export const fetchData = async (category) => {
-    const response = await fetch(`https://fakestoreapi.com/products/category/${category}`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch data');
-    }
-    return response.json();
-  };
-  
+// services/api.js
+
+import axios from 'axios';
+
+// Create an instance of axios with default settings
+const apiClient = axios.create({
+  baseURL: 'https://fakestoreapi.com/',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+
+
+export default apiClient;

@@ -1,21 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from './Navbar';
 import Banner from './Banner';
 import Footer from './Footer';
+import SearchBar from './SearchBar';
 
-const Layout = ({ children, showBanner }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    
-    console.log('Search query:', searchQuery);
-  };
-
+const Layout = ({ children, showBanner, onSearch }) => {
   return (
     <div className="bg-red-50 min-h-screen">
       <Navbar />
@@ -25,21 +14,7 @@ const Layout = ({ children, showBanner }) => {
             <Banner />
           </div>
           <div className="p-4">
-            <form onSubmit={handleSearchSubmit} className="flex justify-center mb-4">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="p-2 border border-gray-300 rounded-l-md"
-                placeholder="Search for items"
-              />
-              <button
-                type="submit"
-                className="bg-orange-500 text-white px-4 py-2 rounded-r-md hover:bg-white hover:text-black hover:shadow-md"
-              >
-                Search
-              </button>
-            </form>
+            <SearchBar onSearch={onSearch} />
           </div>
         </>
       )}

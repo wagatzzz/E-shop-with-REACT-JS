@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
-import { fetchData } from '../services/api';
+import { fetchData } from '../services/dataServices';
 import ProductItem from '../components/specific/ProductItem';
 
 const MenPage = () => {
   const category = "men's clothing";
   const [data, setData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
 
   useEffect(() => {
     fetchData(category)
       .then(response => {
         setData(response);
+        setFilteredData(response);
         console.log(response);
       })
       .catch(error => console.error('Error fetching data:', error));
   }, [category]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      const filteredItems = data.filter(item =>
+        item && item.title && item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredData(filteredItems);
+    } else {
+      setFilteredData(data);
+    }
+  }, [searchQuery, data]);
 
   const addToCart = (product) => {
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
@@ -42,11 +56,15 @@ const MenPage = () => {
     }, 1000);
   };
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
-    <Layout showBanner={true}>
+    <Layout showBanner={true} onSearch={handleSearch}>
       <div>
         <div className="product-grid">
-          {data.map(item => (
+          {filteredData.map(item => (
             <ProductItem
               key={item.id}
               product={item}

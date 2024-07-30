@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
-import { fetchData } from '../services/api';
+import { fetchData } from '../services/dataServices';
 import ProductItem from '../components/specific/ProductItem';
 import { Link } from 'react-router-dom';
 

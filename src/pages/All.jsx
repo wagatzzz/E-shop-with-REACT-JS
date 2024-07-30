@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/layout/Layout';
-import { fetchData } from '../services/api';
+import { fetchData } from '../services/dataServices';
 import ProductItem from '../components/specific/ProductItem';
 
 const All = () => {
   const [allProducts, setAllProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     const fetchAllData = async () => {
@@ -13,6 +15,7 @@ const All = () => {
         const allData = await Promise.all(categories.map(category => fetchData(category)));
         const combinedData = allData.flat();
         setAllProducts(combinedData);
+        setFilteredProducts(combinedData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -21,42 +24,49 @@ const All = () => {
     fetchAllData();
   }, []);
 
-  const addToCart = (product) => {
-    // Retrieve cart items from local storage
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  useEffect(() => {
+    if (searchQuery) {
+      const filteredItems = allProducts.filter(item =>
+        item && item.title && item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredProducts(filteredItems);
+    } else {
+      setFilteredProducts(allProducts);
+    }
+  }, [searchQuery, allProducts]);
 
-    // Check if the product already exists in the cart
+  const addToCart = (product) => {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const existingItem = cartItems.find(item => item.id === product.id);
 
     if (existingItem) {
-      // If the item exists, increase its quantity
       existingItem.quantity += 1;
     } else {
-      // Otherwise, add the product to the cart with a quantity of 1
       const newCartItem = { ...product, quantity: 1 };
       cartItems.push(newCartItem);
     }
 
-    // Update local storage with the updated cart items
     localStorage.setItem('cart', JSON.stringify(cartItems));
 
-    // Create toast notification element
     const toast = document.createElement('div');
     toast.classList.add('toast');
     toast.textContent = 'Product added to cart!';
-
     document.body.appendChild(toast);
 
     setTimeout(() => {
       toast.remove();
-    }, 1000); 
+    }, 1000);
+  };
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
 
   return (
-    <Layout showBanner={true}>
+    <Layout showBanner={true} onSearch={handleSearch}>
       <div>
         <div className="product-grid">
-          {allProducts.map(product => (
+          {filteredProducts.map(product => (
             <ProductItem
               key={product.id}
               product={product}
