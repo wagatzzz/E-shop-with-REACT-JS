@@ -1,4 +1,3 @@
-// SearchBar.js
 import React, { useState } from 'react';
 
 const SearchBar = ({ onSearch }) => {
@@ -6,7 +5,7 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    onSearch(e.target.value); // Trigger the search on every change
+    onSearch(e.target.value);
   };
 
   const handleSearchSubmit = (e) => {

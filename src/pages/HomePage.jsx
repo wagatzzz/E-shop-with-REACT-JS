@@ -1,46 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Layout from '../components/layout/Layout';
-import { fetchData } from '../services/dataServices';
 import ProductItem from '../components/specific/ProductItem';
 import { Link } from 'react-router-dom';
+import useFetchCategoryData from '../hooks/useFetchCategoryData';
+import useCart from '../hooks/useCart';
 
-function HomePage() {
-  const [womenProducts, setWomenProducts] = useState([]);
+const HomePage = () => {
+  const category = "women's clothing";
+  const { data: womenProducts, error } = useFetchCategoryData(category);
+  const { addToCart } = useCart();
 
-  useEffect(() => {
-    fetchData("women's clothing")
-      .then(response => {
-        const firstFourItems = response.slice(0, 4);
-        setWomenProducts(firstFourItems);
-      })
-      .catch(error => console.error('Error fetching women\'s products:', error));
-  }, []);
+  if (error) {
+    return <div>Error fetching women's products: {error.message}</div>;
+  }
 
-  const addToCart = (product) => {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
-
-    if (existingItemIndex !== -1) {
-      // If the item already exists in the cart, update its quantity
-      cartItems[existingItemIndex].quantity += 1;
-    } else {
-      // If the item is new to the cart, add it with a quantity of 1
-      product.quantity = 1;
-      cartItems.push(product);
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-
-    // Create toast notification element
-    const toast = document.createElement('div');
-    toast.classList.add('toast');
-    toast.textContent = 'Product added to cart!';
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-      toast.remove();
-    }, 1000);
-  };
+  const firstFourItems = womenProducts.slice(0, 4);
 
   return (
     <Layout>
@@ -82,7 +56,7 @@ function HomePage() {
             <span className="w-48 h-1 bg-red-500 absolute mt-10"></span>
           </div>
           <div className="product-container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {womenProducts.map(product => (
+            {firstFourItems.map(product => (
               <ProductItem
                 key={product.id}
                 product={product}
